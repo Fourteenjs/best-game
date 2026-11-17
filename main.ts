@@ -1,12 +1,17 @@
-// Glowgarden — Lantern Defense, a best-game-01 entry (Node 22, standard library
-// only). The game is plain static files under game/ (game/index.html and its ES
-// modules, no library and no network request). This program copies game/ and
-// screenshots/ from beside this file to /output and writes /output/dossier.json,
-// the summary the judge reads, with the vendored make.fun library.
+// Glowgarden — Lantern Defense, round 2 of a best-game-01 entry (Node 22,
+// standard library only). The game is plain static files under game/
+// (game/index.html and its ES modules, no library and no network request).
+// This program copies game/ and screenshots/ from beside this file to
+// /output and writes /output/dossier.json, the summary the judge reads,
+// with the vendored make.fun library.
 //
 // Serve it locally with `node serve.ts`, then open http://localhost:8080.
 // Outside the grader's container, MAKEFUN_OUTPUT_DIR stands in for /output:
 //   mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
+//
+// The program is deterministic: it copies files and writes the dossier the
+// library computes from them. No clock, no randomness, no network — two runs
+// write the same bytes.
 
 import { cpSync, existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';

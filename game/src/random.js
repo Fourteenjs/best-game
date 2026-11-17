@@ -1,5 +1,6 @@
-// Seeded RNG (mulberry32) so screenshot states and wave spawns are reproducible.
-
+// Seeded RNG (mulberry32) so screenshot states and wave spawns are
+// reproducible, plus the small helpers the simulation uses to draw from it.
+// Nothing here reads the wall clock: a run with the same seed plays the same.
 export function mulberry32(seed) {
   let a = seed >>> 0;
   return function next() {
@@ -21,4 +22,8 @@ export function range(rng, min, max) {
 
 export function intRange(rng, min, max) {
   return min + Math.floor(rng() * (max - min + 1));
+}
+
+export function clamp(v, lo, hi) {
+  return v < lo ? lo : v > hi ? v : v;
 }
